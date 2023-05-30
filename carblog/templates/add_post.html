@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Dodawanie artykułu{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Dodaj post</h1>
+
+<br/>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Opublikuj</button>
+    </form>
+</div>
+{% else %}
+
+Nie powinno Cię tu być.
+
+{% endif %}
+{% endblock %}

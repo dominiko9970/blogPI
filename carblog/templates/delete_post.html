@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuń artykułu{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Usuwanie artykułu</h1>
+
+<br/><br/>
+<h3>Usuń: {{ post.title }}</h3>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        <strong>Na pewno?</strong><br/><br/>
+        <button class="btn btn-secondary">Usuń</button>
+    </form>
+</div>
+{% else %}
+Nie powinno Cię tu być
+{% endif %}
+
+{% endblock %}

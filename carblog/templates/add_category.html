@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Dodawanie kategorii{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Dodaj kategorię</h1>
+
+<br/>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Dodaj kategorię</button>
+    </form>
+</div>
+{% else %}
+
+Nie powinno Cię tu być.
+
+{% endif %}
+{% endblock %}
