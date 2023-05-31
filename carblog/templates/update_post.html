@@ -13,12 +13,12 @@
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <button class="btn btn-secondary">Opublikuj</button>
+        <button class="btn btn-dark mr-2 mb-3">Opublikuj</button>
     </form>
 </div>
 {% else %}
 
-Nie powinno Cię tu być.
+<h1>Nie powinno Cię tu być.</h1>
 
 {% endif %}
 

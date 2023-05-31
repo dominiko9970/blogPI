@@ -6,27 +6,33 @@
 
 <h1>{{ cats }}</h1>
 
-<ul>
+
 {% for post in category_posts %}
 
-<li>
-    <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> -
-    <small>
-     {{post.category}} -
-     {{post.author.first_name }} 
-     {{post.author.last_name }} - 
-     {{ post.post_date }} 
-    {% if user.is_authenticated %}
-        - <a href="{% url 'update_post' post.pk %}">Edytuj</a>
-        <a href="{% url 'delete_post' post.pk %}">Usuń</a>
-    {% endif %}
-    </small>
-    <br/>
-    {{ post.body|slice:":200"|safe }}
-</li>
+<div class="card bg-dark bg-gradient text-white">
+    <div class="card-body">
+        <a href="{% url 'article-detail' post.pk %}" role="button" class="btn btn-dark mr-2 mb-3" style="width:100%"><h2>{{ post.title }}</h2></a>
 
+        {% if post.header_image %}
+        <img class="card-img-bottom" src="{{ post.header_image.url }}">
+        {% endif %}
+
+        <p>{{ post.body|slice:":50"|safe }}</p>
+
+        <p class="card-text">
+            <small class="text-muted text-light">Kategoria: <a class="text-light"
+                    href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+                {% if user.is_authenticated %}
+                - <a href="{% url 'update_post' post.pk %}">Edytuj</a>
+                <a href="{% url 'delete_post' post.pk %}">Usuń</a>
+                {% endif %}
+            </small>
+        </p>
+        
+    </div>
+</div><br>
 {% endfor %}
-</ul>
+
 
 {% else %}
 <h2>Nic tu nie ma...</h2>

@@ -7,8 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
   <title>{% block title %}
     Car Blog
@@ -16,83 +15,83 @@
   </title>
 </head>
 
-<body class="bg-secondary">
+<body class="bg-secondary bg-gradient">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'home' %}">Car Blog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Car Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        {% if cat_menu %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            Kategorie
-          </a>
-          <div class="dropdown-menu">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-            {% for item in cat_menu %}
-            <a class="dropdown-item" href="{% url 'category' item|slugify %}">
-              {{ item }}
+          {% if cat_menu %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Kategorie
             </a>
-            {% endfor %}
-          </div>
-        </li>
-        {% else %}
+            <ul class="dropdown-menu dropdown-menu-dark">
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'category-list' %}">Kategorie</a>
-        </li>
+              {% for item in cat_menu %}
+              <li> <a class="dropdown-item rounded-2" href="{% url 'category' item|slugify %}">
+                  {{ item }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% else %}
 
-        {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'category-list' %}">Kategorie</a>
+          </li>
 
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_post' %}">Dodaj Artykuł</a>
-        </li>
+          {% endif %}
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_category' %}">Dodaj kategorię</a>
-        </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_post' %}">Dodaj Artykuł</a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Wyloguj</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Zarejestruj się</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_category' %}">Dodaj kategorię</a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Zaloguj</a>
-        </li>
-        {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Wyloguj</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Zarejestruj się</a>
+          </li>
 
-      </ul>
-      <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search_result' %}">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Zaloguj</a>
+          </li>
+          {% endif %}
+
+        </ul>
+        <form class="d-flex" method="GET" action="{% url 'search_result' %}">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
   </nav>
   <br />
   <div class="container">
 
-      {% block content %}
+    {% block content %}
 
-      {% endblock %}
+    {% endblock %}
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--

@@ -49,7 +49,7 @@ class SearchView(ListView):
         post = super(SearchView, self).get_queryset()
         query = self.request.GET.get('search')
         if query:
-            postresult = Post.objects.filter(title__contains=query)
+            postresult = Post.objects.filter(Q(title__contains=query) | Q(title_tag__contains=query) | Q(category__contains=query))
             post = postresult
         else:
             postresult = Post.objects.none()

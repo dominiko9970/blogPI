@@ -3,13 +3,14 @@
 
 
 {% block content %}
-
+<div class="col-12 col-md-8">
     <h1>Kategorie na blogu</h1>
-
+</div>
         {% for item in cat_menu_list %}
-        <h4><a class="dropdown-item" href="{% url 'category' item|slugify %}">
+        <a role="button" class="btn btn-dark mr-2 mb-3" href="{% url 'category' item|slugify %}">
             {{ item }}
-        </a></h4>
+        </a>
+        <br>
         {% endfor %}
 
 {% endblock %}
