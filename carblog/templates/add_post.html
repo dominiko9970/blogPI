@@ -3,6 +3,8 @@
 {% block title %}Dodawanie artykułu{% endblock %}
 
 {% block content %}
+<div class="card bg-dark bg-gradient text-white w-75 mx-auto p-3 m-3">
+    <div class="'card-body ">
 
 {% if user.is_authenticated %}
 <h1>Dodaj post</h1>
@@ -21,4 +23,6 @@
 <h1>Nie powinno Cię tu być.</h1>
 
 {% endif %}
+</div>
+</div>
 {% endblock %}

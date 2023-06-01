@@ -36,7 +36,7 @@
 
               {% for item in cat_menu %}
               <li> <a class="dropdown-item rounded-2" href="{% url 'category' item|slugify %}">
-                  {{ item }}</a>
+                  {{ item | capfirst }}</a>
               </li>
               {% endfor %}
             </ul>
@@ -72,11 +72,13 @@
           {% endif %}
 
         </ul>
+        
+      </div>
+      <div class="float-end">
         <form class="d-flex" method="GET" action="{% url 'search_result' %}">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+        </form></div>
     </div>
   </nav>
   <br />

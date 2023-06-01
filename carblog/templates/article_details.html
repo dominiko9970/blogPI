@@ -4,70 +4,68 @@
 
 {% block content %}
 
-<div class="row">
 
-   <div class="col-lg-8">
 
-      <article>
-         <header class="'mb-4">
-            <h2 class="fw-bolder mb-1">{{ post.title }}</h2>
+<div class="card bg-dark bg-gradient text-white w-75 mx-auto p-3 m-3">
+   <div class="'card-body ">
+      <h2 class="fw-bolder p-2 bg-dark rounded text-center">{{ post.title }}</h2>
 
-            <div class="fst-italic mb-2">
+      <div class="card-text fst-italic mb-2 text-light">
+         Kategoria: <a class="text-light" href="{% url 'category' post.category|slugify %}">
+            {{ post.category }}</a><br>
+         By: {{ post.author.first_name }}
+         {{ post.author.last_name }} -
+         {{ post.post_date }}
+         {% if user.is_authenticated %}
+         - <a href="{% url 'update_post' post.pk %}">Edytuj</a>
+         <a href="{% url 'delete_post' post.pk %}">Usuń</a>
+         {% endif %}
 
-               By: {{ post.author.first_name }}
-               {{ post.author.last_name }} -
-               {{ post.post_date }}
-               {% if user.is_authenticated %}
-               - <a href="{% url 'update_post' post.pk %}">Edytuj</a>
-               <a href="{% url 'delete_post' post.pk %}">Usuń</a>
-               {% endif %}
+      </div>
 
-            </div>
-         </header>
-
-         <figure class="mb-4">
-            {% if post.header_image %}
-            <img class="img-fluid-rounded" src="{{ post.header_image.url }}">
-            {% endif %}
-         </figure>
-
-         <section class="mb-5">
-
-            {{ post.body|safe }}
-         </section>
-         <section class="mb-5">
-            <a href="{% url 'home' %}" class="btn btn-dark">Powrót</a>
-         </section>
-      </article>
+      <figure class="mb-4">
+         {% if post.header_image %}
+         <img class="card-img w-100 img-fluid-rounded" src="{{ post.header_image.url }}">
+         {% endif %}
+      </figure>
 
       <section class="mb-5">
-         <div class="card">
-            <div class="card-body">
-               <div class="mb-4">
-                  <h2>Komentarze</h2>
-                  {% if not post.comments.all %}
-                  Jak na razie brak komentarzy...<br>
-                  <a href="{% url 'add_comment' post.pk %}">Dodaj komentarz</a>
-                  {% else %}
-                  <a href="{% url 'add_comment' post.pk %}">Dodaj komentarz</a><br />
-               </div>
-               <div class="mb-4">
-                  {% for comment in post.comments.all %}
-                  <strong>{{ comment.name }} - {{ comment.date_added }} </strong>
-                  <br />
-                  {{ comment.body }}
-                  </br>
-                  <hr>
-                  {% endfor %}
-               </div>
-            </div>
 
-         </div>
-
+         {{ post.body|safe }}
       </section>
-
+      <section class="mb-5">
+         <a href="{% url 'home' %}" class="btn btn-dark">Powrót</a>
+      </section>
    </div>
-</div>
+
+
+<section class="mb-5">
+
+      <div class="card-body">
+         <div class="mb-4">
+            <h2>Komentarze</h2>
+            {% if not post.comments.all %}
+            Jak na razie brak komentarzy...<br>
+            <a href="{% url 'add_comment' post.pk %}">Dodaj komentarz</a>
+            {% else %}
+            <a href="{% url 'add_comment' post.pk %}">Dodaj komentarz</a><br />
+         </div>
+         <div class="mb-4">
+            {% for comment in post.comments.all %}
+            <strong>{{ comment.name }} - {{ comment.date_added }} </strong>
+            <br />
+            {{ comment.body }}
+            </br>
+            <hr>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+
+
+</section>
+
+
 {% endif %}
 
 

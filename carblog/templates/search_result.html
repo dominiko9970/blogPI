@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-12 col-md-8">
+<div class="col-12 col-md-8 mx-auto">
     <h1 class "display-4">Wyniki wyszukiwania:</h1><br>
 </div>
 
 {% for post in all_search_results %}
-<div class="card bg-dark bg-gradient text-white">
+<div class="card bg-dark bg-gradient text-white w-75 mx-auto">
     <div class="card-body">
         <a href="{% url 'article-detail' post.pk %}" role="button" class="btn btn-dark mr-2 mb-3" style="width:100%"><h2>{{ post.title }}</h2></a>
 

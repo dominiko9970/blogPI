@@ -3,16 +3,18 @@
 {% block title %}Rejestracja{% endblock %}
 
 {% block content %}
+<div class="card bg-dark bg-gradient text-white w-75 mx-auto p-3 m-3">
+    <div class="'card-body ">
+        <h1>Zarejestruj się</h1>
 
-<h1>Zarejestruj się</h1>
-
-<br/>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-dark mr-2 mb-3">Zarejestruj</button>
-    </form>
+        <br />
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-dark mr-2 mb-3">Zarejestruj</button>
+            </form>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

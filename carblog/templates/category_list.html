@@ -3,14 +3,18 @@
 
 
 {% block content %}
-<div class="col-12 col-md-8">
+<div class="col-12 col-md-8 mx-auto">
     <h1>Kategorie na blogu</h1>
 </div>
+<div class="card bg-dark bg-gradient text-white w-75 mx-auto">
+    <div class="card-body">
         {% for item in cat_menu_list %}
         <a role="button" class="btn btn-dark mr-2 mb-3" href="{% url 'category' item|slugify %}">
-            {{ item }}
+            {{ item | capfirst }}
         </a>
+
         <br>
         {% endfor %}
-
+    </div>
+</div>
 {% endblock %}

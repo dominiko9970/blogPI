@@ -1,30 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-12 col-md-8">
+<div class="col-12 col-md-8 mx-auto">
     <h1 class "display-4">Przeglądaj najnowsze posty na moim blogu!</h1><br>
 </div>
 
 {% for post in object_list %}
-<div class="card bg-dark bg-gradient text-white">
+<div class="card bg-dark bg-gradient text-white w-75 mx-auto">
     <div class="card-body">
+        
         <a href="{% url 'article-detail' post.pk %}" role="button" class="btn btn-dark mr-2 mb-3" style="width:100%"><h2>{{ post.title }}</h2></a>
-
-        {% if post.header_image %}
-        <img class="card-img-bottom" src="{{ post.header_image.url }}">
-        {% endif %}
-
-        <p>{{ post.body|slice:":50"|safe }}</p>
-
         <p class="card-text">
             <small class="text-muted text-light">Kategoria: <a class="text-light"
-                    href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+                    href="{% url 'category' post.category|slugify %}">{{ post.category | capfirst }}</a>
                 {% if user.is_authenticated %}
                 - <a href="{% url 'update_post' post.pk %}">Edytuj</a>
                 <a href="{% url 'delete_post' post.pk %}">Usuń</a>
                 {% endif %}
             </small>
         </p>
+        {% if post.header_image %}
+        <img class="card-img-bottom" src="{{ post.header_image.url }}">
+        {% endif %}
+
+        <p>{{ post.body|slice:":150"|safe }}</p>
+
+        
         
     </div>
 </div><br>
