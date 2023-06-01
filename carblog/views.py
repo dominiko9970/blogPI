@@ -24,7 +24,8 @@ def CategoryView(request, cats):
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['-post_date']
+    ordering = ['-id']
+    #ordering = ['-post_date']
     context_object_name = 'all_search_results'
 
     def get_context_data(self, *args, **kwargs):
@@ -36,7 +37,8 @@ class HomeView(ListView):
 class SearchView(ListView):
     model = Post
     template_name = 'search_result.html'
-    ordering = ['-post_date']
+    ordering = ['-id']
+    #ordering = ['-post_date']
     context_object_name = 'all_search_results'
 
     def get_context_data(self, *args, **kwargs):

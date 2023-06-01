@@ -23,13 +23,11 @@
         <img class="card-img-bottom" src="{{ post.header_image.url }}">
         {% endif %}
 
-        <p>{{ post.body|slice:":150"|safe }}</p>
+       <!-- <p>{{ post.body|slice:":150"|safe }}</p> -->
 
         
         
     </div>
 </div><br>
 {% endfor %}
-
-
 {% endblock %}

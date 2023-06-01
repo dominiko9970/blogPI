@@ -38,8 +38,8 @@
       </section>
    </div>
 
-
-<section class="mb-5">
+<hr>
+   <div class="mb-5">
 
       <div class="card-body">
          <div class="mb-4">
@@ -49,6 +49,7 @@
             <a href="{% url 'add_comment' post.pk %}">Dodaj komentarz</a>
             {% else %}
             <a href="{% url 'add_comment' post.pk %}">Dodaj komentarz</a><br />
+            {% endif %}
          </div>
          <div class="mb-4">
             {% for comment in post.comments.all %}
@@ -61,14 +62,5 @@
          </div>
       </div>
    </div>
-
-
-</section>
-
-
-{% endif %}
-
-
-
-
+</div>
 {% endblock %}
